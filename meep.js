@@ -7,6 +7,7 @@ ac=new AudioContext()
 P=[]
 m='mouse'
 K="AWSEDFTGYHUJKOLP"
+if(navigator.language=='de')K=K.replace(/Y/,'Z')
 function I(e,b,l,n){
 	l=e.target
 	b=0
