@@ -32,7 +32,15 @@ function note(i) {
 	O.start()
 	return O
 }
-w.onkeydown=function(e) {
-	console.log(e.keyCode)
+K=navigator.language=='de'?"AWSEDFTGZHUJKOLP":"AWSEDFTGYHUJKOLP"
+w.onkeydown=function(e){
+	var i=K.indexOf(String.fromCharCode(e.keyCode))
+	if(i<0||P[i])return
+	P[i]=note(i)
+}
+w.onkeyup=function(e){
+	var i=K.indexOf(String.fromCharCode(e.keyCode))
+	if(i>-1&&P[i])P[i].stop()
+	P[i]=null
 };
 ['mousedown','mouseover','dragstart','touchstart'].map(function(e){p.addEventListener(e,mouse)})
