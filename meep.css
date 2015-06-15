@@ -7,13 +7,15 @@ h1,p { color: #fff;}
 h1 { font-weight: light; }
 
 ul.piano {
+	-webkit-user-select: none;
+	user-select: none;
 	list-style: none;
 	margin:0;
 	padding:0;
 }
 
 .piano li {
-	user-select: none;
+
 	position: relative;
 	display: inline-block; 
 	width: 50px; 
@@ -21,8 +23,7 @@ ul.piano {
 	margin-right: -5px;
 }
 
-.piano a { 
-	user-select: none;
+.piano div { 
 	width: 100%; 
 	height: 100%;
 	text-decoration: none;
@@ -37,7 +38,7 @@ ul.piano {
 	border: 1px solid #ccc;
 }
 
-.piano a:active {
+.piano div:active {
 	background: #eee;
 	background: linear-gradient(45deg, #eee, #ddd);
 }
