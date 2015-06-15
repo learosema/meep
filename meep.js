@@ -6,6 +6,7 @@ L=[].slice.call(p.querySelectorAll('li'))
 ac=new AudioContext()
 P=[]
 m='mouse'
+a='addEventListener'
 function I(e){
 	var l=e.target,b=0
 	if(l.nodeName=='UL')return-1
@@ -25,7 +26,7 @@ function N(i) {
 }
 K="AWSEDFTGYHUJKOLP"
 w.onkeydown=function(e){
-	var i=K.indexOf($(e.keyCode).replace(/Z/,'Y'))
+	var i=K.indexOf($(e.keyCode))
 	if(i<0||P[i])return
 	P[i]=N(i)
 }
@@ -33,12 +34,12 @@ w.onkeyup=function(e){
 	var i=K.indexOf($(e.keyCode))
 	if(i>-1&&P[i]){P[i].stop();P[i]=0}
 };
-[m+'down',m+'over','dragstart','touchstart'].map(function(e){p.addEventListener(e,function(e){
+[m+'down',m+'over','dragstart','touchstart'].map(function(e){p[a](e,function(e){
 	var i=I(e)
 	if(e.buttons==0||i<0||P[i])return
 	P[i]=N(i)
 })});
-[m+'up',m+'out','dragend','touchend'].map(function(h){w.addEventListener(h,function(e){
+[m+'up',m+'out','dragend','touchend'].map(function(h){w[a](h,function(e){
 	var i=I(e)
 	if(i>-1&&P[i]){P[i].stop();P[i]=0}
 })})
