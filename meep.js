@@ -1,27 +1,27 @@
 w=window
 d=document
-function $(s,n){return(n||d).querySelector(s)}
-function $$(s,n){return[].slice.call((n||d).querySelectorAll(s))}
+p=d.querySelector('.piano')
+L=[].slice.call(p.querySelectorAll('li'))
 ac=new AudioContext()
 P=[]
-function mouse(e) {
-	var li,b=0,i
-	if(e.buttons==0||e.target.nodeName=='UL')return
-	if(e.target.nodeName=='DIV')li=e.target.parentNode
-	if(e.target.nodeName=='LI'){li=e.target;b=1}
-	i=$$('.piano li').indexOf(li)
+function mouse(e){
+	var l=e.target,b=0,i
+	if(e.buttons==0||l.nodeName=='UL')return
+	if(l.nodeName=='LI')b=1
+	if(l.nodeName=='DIV')l=l.parentNode
+	i=L.indexOf(l)
 	i=(i/7|0)*12+("0x"+("024579b"[i%7])|0)+b
 	if(P[i])return
 	P[i]=note(i)
-	var of=function(){
+	var off=function(){
 		if (P[i])P[i].stop()
 		P[i]=null
 		H.map(function(h) {
 			w.removeEventListener(h)
 		})
 	}
-	var H=['mouseup','mouseout','dragend'].map(function(h){
-		return w.addEventListener(h,of)
+	var H=['mouseup','mouseout','dragend','touchend'].map(function(h){
+		return w.addEventListener(h,off)
 	})
 }
 function note(i) {
@@ -33,6 +33,6 @@ function note(i) {
 	return O
 }
 w.onkeydown=function(e) {
-	console.log(e)
+	console.log(e.keyCode)
 };
-['mousedown','mouseover','dragstart'].map(function(e){$('.piano').addEventListener(e,mouse)})
+['mousedown','mouseover','dragstart','touchstart'].map(function(e){p.addEventListener(e,mouse)})

@@ -15,7 +15,6 @@ ul.piano {
 }
 
 .piano li {
-
 	position: relative;
 	display: inline-block; 
 	width: 50px; 
@@ -43,7 +42,7 @@ ul.piano {
 	background: linear-gradient(45deg, #eee, #ddd);
 }
 
-li.black:after {
+li.b:after {
 	cursor: pointer;
 	position: absolute;
 	top: 0px;
